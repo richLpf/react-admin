@@ -1,11 +1,4 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+@import '~antd/dist/antd.css';
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
@@ -35,4 +28,28 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+#components-layout-demo-fixed-sider .logo {
+  height: 32px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 16px;
+}
+.site-layout .site-layout-background {
+  background: #fff;
+}
+
+
+
+/* HeaderInfo */
+.header-left {
+  float: left;
+}
+.header-right {
+  float: right;
+}
+
+/* 行间距 */
+.row-space {
+  margin-bottom: 10px;
 }

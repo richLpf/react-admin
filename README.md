@@ -66,3 +66,49 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `yarn build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+## react 切换端口号运行
+
+## 生成路由，组织路由，登录页面
+
+## 路径按需加载
+
+## 引入代码格式化
+
+`prettier`
+
+```
+cnpm i prettier -D
+```
+
+
+
+## 前端单元测试
+
+## 自动化发布
+
+## 更换皮肤
+
+## 指引页面
+
+## 文档
+
+## 常见组件
+
+## 登录页面
+
+
+## echart 在react中使用
+
+### 正常使用
+
+### 按需引入使用echarts-for-react
+https://www.jianshu.com/p/f6c1c4618c22
+
+### 常用图表
+
+柱状图
+
+折线图
+
+饼图
