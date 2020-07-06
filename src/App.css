@@ -53,3 +53,8 @@
 .row-space {
   margin-bottom: 10px;
 }
+
+.loginCard{
+  width: 400px;
+  margin: 150px auto;
+}

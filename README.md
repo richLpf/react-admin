@@ -71,17 +71,37 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 
 ## 生成路由，组织路由，登录页面
 
+前端系统路由配置
+
+通常我们在app.js种增加路由入口
+
+
 ## 路径按需加载
 
 ## 引入代码格式化
 
-`prettier`
+`prettier`,  版本越高，需要的node版本越高
 
 ```
 cnpm i prettier -D
 ```
 
+package.json
+```
+"scripts": {
+    "start": "node scripts/start.js",
+    "build": "node scripts/build.js",
+    "test": "node scripts/test.js",
+    "prettier": "prettier --parser --write ./src/**/*.js"
+},
+```
+在package.json中添加prettier, 对应的执行语句
 
+每次运行npm run prettier  /src目录下的js文件将会进行格式化
+
+## 前端预发环境反代理proxy
+
+(参考文章)[https://segmentfault.com/a/1190000014891894]
 
 ## 前端单元测试
 

@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { Row, Col } from "antd";
-import { Interval, Chart, Tooltip } from "bizcharts";
+import { Interval, Chart, Tooltip, Axis, Geom } from "bizcharts";
 
 function Bar(props) {
   // 数据源

@@ -15,6 +15,11 @@ import NotFound from "@/page/NotFound/404";
 import Progress from "@/page/progress";
 import Tree from "@/page/tree";
 import Demo from "@/page/bases/demo";
+import DashBoard1 from "@/page/dashboard/dashboard1"
+import DashBoard2 from "@/page/dashboard/dashboard2"
+import Editor from '@/page/bases/Editor'
+import AdminRole from '@/page/admin/role'
+import AdminUser from '@/page/admin/user'
 
 const { Header, Content, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -47,12 +52,12 @@ function Home(props) {
           >
             <SubMenu key="sub1" icon={<UserOutlined />} title="看板">
               <Menu.Item key="1" icon={<UserOutlined />}>
-                <Link to="/">
+                <Link to="/dashboard1">
                   <span>Link看板一</span>
                 </Link>
               </Menu.Item>
               <Menu.Item key="2" icon={<VideoCameraOutlined />}>
-                <Link to="/demo">
+                <Link to="/dashboard2">
                   <span>Link看板二</span>
                 </Link>
               </Menu.Item>
@@ -81,20 +86,25 @@ function Home(props) {
                 </Link>
               </Menu.Item>
               <Menu.Item key="7" icon={<UserOutlined />}>
-                <Link to="/tree">
+                <Link to="/editor">
                   <span>富文本</span>
                 </Link>
               </Menu.Item>
             </SubMenu>
             <SubMenu key="sub4" icon={<LaptopOutlined />} title="权限管理">
               <Menu.Item key="8" icon={<UserOutlined />}>
-                <Link to="/tree">
+                <Link to="/user">
                   <span>用户管理</span>
+                </Link>
+              </Menu.Item>
+              <Menu.Item key="9" icon={<UserOutlined />}>
+                <Link to="/role">
+                  <span>角色管理</span>
                 </Link>
               </Menu.Item>
             </SubMenu>
             <SubMenu key="sub5" icon={<LaptopOutlined />} title="错误页面">
-              <Menu.Item key="9" icon={<UserOutlined />}>
+              <Menu.Item key="10" icon={<UserOutlined />}>
                 <Link to="/404">
                   <span>用户管理</span>
                 </Link>
@@ -126,13 +136,18 @@ function Home(props) {
           }}
         >
           <Router>
-            <Route exact path="/" component={EChart} />
+            <Route exact path="/" component={DashBoard1} />
+            <Route exact path="/dashboard1" component={DashBoard1} />
+            <Route exact path="/dashboard2" component={DashBoard2} />
             <Route exact path="/echart" component={EChart} />
             <Route exact path="/bizchart" component={Antv} />
             <Route exact path="/progress" component={Progress} />
             <Route exact path="/404" component={NotFound} />
             <Route exact path="/tree" component={Tree} />
             <Route exact path="/demo" component={Demo} />
+            <Route exact path="/editor" component={Editor} />
+            <Route exact path="/user" component={AdminUser} />
+            <Route exact path="/role" component={AdminRole} />
           </Router>
         </Content>
       </Layout>

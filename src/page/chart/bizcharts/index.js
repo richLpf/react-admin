@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
-import { Tabs } from "antd";
-import BarComponent from "./bar";
+import { Tabs, Row, Col } from "antd";
+import BarComponent from "./Bar";
+import BarComponent1 from "./Bar/second"
 import Biao from "./biao";
 
 const { TabPane } = Tabs;
@@ -14,7 +15,14 @@ function BizCharts(props) {
     <Fragment>
       <Tabs defaultActiveKey="1" onChange={callback}>
         <TabPane tab="柱状图" key="1">
-          <BarComponent></BarComponent>
+          <Row gutter="16">
+            <Col span="12">
+              <BarComponent></BarComponent>
+            </Col>
+            <Col span="12">
+              <BarComponent1></BarComponent1>
+            </Col>
+          </Row>
         </TabPane>
         <TabPane tab="饼图" key="2"></TabPane>
         <TabPane tab="折线图" key="3"></TabPane>

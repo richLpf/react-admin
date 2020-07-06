@@ -1,7 +1,13 @@
-import React from "react";
+import React, { Fragment } from "react";
+import ReactChart from "../component/ReactChart";
 
 function Pie(props) {
-  return <Fragment></Fragment>;
+  const { option } = props;
+  return (
+    <Fragment>
+      <ReactChart option={option} />
+    </Fragment>
+  );
 }
 
-export default Pie;
+export default Pie
