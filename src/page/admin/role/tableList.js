@@ -1,5 +1,6 @@
 import React from 'react'
-import { Table } from 'antd'
+import { Table, Button } from 'antd'
+import { EditOutlined, DeleteOutlined } from '@ant-design/icons'
 
 function TableList(props){
 
@@ -13,28 +14,32 @@ function TableList(props){
         },
         {
             title: '英文名',
-            dataIndex: 'age',
-            key: 'age',
+            dataIndex: 'name',
+            key: 'name',
         },
         {
             title: '描述',
-            dataIndex: 'address',
-            key: 'address',
+            dataIndex: 'description',
+            key: 'description',
         },
         {
             title: '创建人',
-            dataIndex: 'address',
-            key: 'address',
+            dataIndex: 'created_user',
+            key: 'created_user',
         },
         {
             title: '创建时间',
-            dataIndex: 'address',
-            key: 'address',
+            dataIndex: 'created_at',
+            key: 'created_at',
         },
         {
             title: '操作',
-            dataIndex: 'address',
-            key: 'address',
+            render: () => {
+                return  <div>
+                    <Button shape="circle" style={{marginRight: '8px'}} icon={<EditOutlined />} />
+                    <Button shape="circle" danger icon={<DeleteOutlined />} />
+                </div>
+            }
         }
     ];
 

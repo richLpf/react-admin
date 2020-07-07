@@ -6,7 +6,9 @@ import React, { Fragment } from "react";
 // 展示不同变更单的影响范围
 // 展示7天内发布的频率
 function DashBoard1(props) {
-  return <Fragment>看板1</Fragment>;
+  return <Fragment>
+  	看板一
+  </Fragment>;
 }
 
 export default DashBoard1

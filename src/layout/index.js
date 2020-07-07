@@ -1,13 +1,15 @@
 import React, { useState } from "react";
-import { Layout, Menu } from "antd";
+import { Layout } from "antd";
 import {
   UserOutlined,
   VideoCameraOutlined,
   LaptopOutlined,
   MenuUnfoldOutlined,
   MenuFoldOutlined,
+  DashboardOutlined
 } from "@ant-design/icons";
 import { HashRouter as Router, Link, Route } from "react-router-dom";
+import RouterComponent from '@/router'
 import EChart from "@/page/chart/echarts";
 import Antv from "@/page/chart/bizcharts";
 import HeaderInfo from "@/component/HeaderInfo";
@@ -20,9 +22,10 @@ import DashBoard2 from "@/page/dashboard/dashboard2"
 import Editor from '@/page/bases/Editor'
 import AdminRole from '@/page/admin/role'
 import AdminUser from '@/page/admin/user'
+import About from '@/page/about'
 
 const { Header, Content, Sider } = Layout;
-const { SubMenu } = Menu;
+//const { SubMenu } = Menu;
 
 function Home(props) {
   const [collapsed, setCollapsed] = useState(false);
@@ -44,73 +47,7 @@ function Home(props) {
           }}
         >
           <div className="logo" />
-          <Menu
-            theme="dark"
-            mode="inline"
-            defaultSelectedKeys={["1"]}
-            defaultOpenKeys={["sub1"]}
-          >
-            <SubMenu key="sub1" icon={<UserOutlined />} title="看板">
-              <Menu.Item key="1" icon={<UserOutlined />}>
-                <Link to="/dashboard1">
-                  <span>Link看板一</span>
-                </Link>
-              </Menu.Item>
-              <Menu.Item key="2" icon={<VideoCameraOutlined />}>
-                <Link to="/dashboard2">
-                  <span>Link看板二</span>
-                </Link>
-              </Menu.Item>
-            </SubMenu>
-            <SubMenu key="sub2" icon={<LaptopOutlined />} title="图表">
-              <Menu.Item key="3" icon={<UserOutlined />}>
-                <Link to="/echart">
-                  <span>Echart</span>
-                </Link>
-              </Menu.Item>
-              <Menu.Item key="4" icon={<VideoCameraOutlined />}>
-                <Link to="/bizchart">
-                  <span>Antv</span>
-                </Link>
-              </Menu.Item>
-            </SubMenu>
-            <SubMenu key="sub3" icon={<LaptopOutlined />} title="基础组件">
-              <Menu.Item key="5" icon={<UserOutlined />}>
-                <Link to="/progress">
-                  <span>进度</span>
-                </Link>
-              </Menu.Item>
-              <Menu.Item key="6" icon={<UserOutlined />}>
-                <Link to="/tree">
-                  <span>树组件</span>
-                </Link>
-              </Menu.Item>
-              <Menu.Item key="7" icon={<UserOutlined />}>
-                <Link to="/editor">
-                  <span>富文本</span>
-                </Link>
-              </Menu.Item>
-            </SubMenu>
-            <SubMenu key="sub4" icon={<LaptopOutlined />} title="权限管理">
-              <Menu.Item key="8" icon={<UserOutlined />}>
-                <Link to="/user">
-                  <span>用户管理</span>
-                </Link>
-              </Menu.Item>
-              <Menu.Item key="9" icon={<UserOutlined />}>
-                <Link to="/role">
-                  <span>角色管理</span>
-                </Link>
-              </Menu.Item>
-            </SubMenu>
-            <SubMenu key="sub5" icon={<LaptopOutlined />} title="错误页面">
-              <Menu.Item key="10" icon={<UserOutlined />}>
-                <Link to="/404">
-                  <span>用户管理</span>
-                </Link>
-              </Menu.Item>
-            </SubMenu>
-          </Menu>
+          <RouterComponent />
         </Sider>
       </Router>
       <Layout className="site-layout">
@@ -148,6 +85,7 @@ function Home(props) {
             <Route exact path="/editor" component={Editor} />
             <Route exact path="/user" component={AdminUser} />
             <Route exact path="/role" component={AdminRole} />
+            <Route exact path="/about" component={About} />
           </Router>
         </Content>
       </Layout>

@@ -1,49 +1,73 @@
-import { lazy } from 'react'
+import React, { Fragment } from 'react'
+import routes from './router'
+import { withRouter } from 'react-router-dom'
+import { Menu } from 'antd'
+import {
+  UserOutlined,
+  VideoCameraOutlined,
+  LaptopOutlined,
+  MenuUnfoldOutlined,
+  MenuFoldOutlined,
+  DashboardOutlined
+} from "@ant-design/icons";
+import { HashRouter as Router, Link, Route } from "react-router-dom";
 
-/*
-  Define Menus Paths
-    一级菜单必须加入Icon；二级菜单无Icon；不在菜单的须隐藏，加 hidden: true；(除index.js 外，习惯文件名大写表示菜单展示 ^▽^)
-    权限控制参数 - permissions，设置可访问的用户角色，数组形式，如：permissions: ['administrator', 'tester'] 等，无权限菜单也不展示
- */
-const dashboard = import('../pages/Dashboard');
+const { SubMenu } = Menu;
 
-// Projects
-const projects = import('../pages/Projects');
-const projectDetail = import('../pages/Projects/projectDetail');
+function Menus(props){
 
-const menus = [
-    {
-      name: '业务数据管理',
-      key: '/ucloud/datamanager',
-      icon: 'cloud-server',
-      permissions: ['administrator'],
-      hidden: true,
-      children: [
-        {
-          name: '产品管理',
-          key: '/ucloud/product',
-          component: lazy(() => UCloudProduct),
-        },
-        {
-          name: '发布记录',
-          key: '/ucloud/changelogs',
-          component: lazy(() => UXiaoChangelogs),
-        },
-      ]
-    },
-    {
-      name: '工作台',
-      key: '/dashboard',
-      icon: 'cloud-sync',
-      component: lazy(() => dashboard),
-    },
-    {
-      name: '需求池',
-      key: '/demands',
-      icon: 'file-text',
-      component: lazy(() => Demands),
-      hidden: false
-    }
-]
+	const { location, history } = props
 
-export default menus
+	const hasChild = (menu) => {
+		return Array.isArray(menu.children) && menu.children.length > 0
+	}
+
+	const genSubMenu = (menu) => {
+		const { icon, key, name } = menu
+		return (
+			<SubMenu 
+				key={key} 
+				icon={icon} 
+				title={name}>
+				{genMenus(menu.children)}
+			</SubMenu>
+		)
+	}
+
+	const genMenItem = (menu) => {
+		const { hidden, icon, name, key } = menu
+		return (
+			<Menu.Item key={key} icon={icon?icon:null}>
+                <Link to={key}>
+                  <span>{name}</span>
+                </Link>
+            </Menu.Item>
+        )
+	}
+
+	const genMenus = (routes) => {
+		return routes.reduce((prev, next) => {
+			return prev.concat(
+				hasChild(next) ? genSubMenu(next) : genMenItem(next)
+			)
+		}, [])
+	}
+
+	const handleNavClick = (key) => {
+		console.log("key", key)
+		history.push(key)
+	}
+
+	return <Fragment>
+		<Menu
+	      theme="dark"
+	      mode="inline"
+	      selectedKeys={[location.pathname]}
+	      onClick={handleNavClick}
+	    >
+	      {genMenus(routes)}
+	    </Menu>
+	</Fragment>
+}
+
+export default withRouter(Menus)

@@ -13,23 +13,23 @@ function TableList(props){
         },
         {
             title: '角色',
-            dataIndex: 'age',
-            key: 'age',
+            dataIndex: 'role',
+            key: 'role',
         },
         {
             title: '授权人',
-            dataIndex: 'address',
-            key: 'address',
+            dataIndex: 'created_user',
+            key: 'created_user',
         },
         {
             title: '授权时间',
-            dataIndex: 'address',
-            key: 'address',
+            dataIndex: 'created_at',
+            key: 'created_at',
         },
         {
             title: '操作',
-            dataIndex: 'address',
-            key: 'address',
+            dataIndex: 'option',
+            key: 'option',
         }
     ];
 

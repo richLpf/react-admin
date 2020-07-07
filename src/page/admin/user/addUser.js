@@ -5,18 +5,11 @@ const { Option } = Select
 
 function AddUser(props){
 
-    const { visible, handleOk, handleCancel, confirmLoading } = props
+    const { visible, handleCancel, handleOk, confirmLoading, form } = props
 
     const layout = {
         labelCol: { span: 4 },
         wrapperCol: { span: 17 },
-    }
-
-    const onChange = () => {
-
-    }
-    const onSearch = () => {
-
     }
 
     const onFinish = (val) => {
@@ -30,38 +23,40 @@ function AddUser(props){
           onOk={handleOk}
           onCancel={handleCancel}
           confirmLoading={confirmLoading}
+          forceRender
+          okText="确认"
+          cancelText="取消"
         >
             <Form
                 {...layout}
                 name="basic"
+                form={form}
                 onFinish={onFinish}
             >
                 <Form.Item
                     label="英文名"
                     name="username"
-                    rules={[{ required: true, message: 'Please input your username!' }]}
+                    rules={[{ required: true, message: '请输入英文名' }]}
                 >
                     <Input placeholder="请输入英文名"/>
                 </Form.Item>
 
                 <Form.Item
                     label="所属角色"
-                    name="password"
-                    rules={[{ required: true, message: 'Please input your password!' }]}
+                    name="role"
+                    rules={[{ required: true, message: '请选择角色' }]}
                 >
                     <Select
                         showSearch
                         placeholder="选择角色"
                         optionFilterProp="children"
-                        onChange={onChange}
-                        onSearch={onSearch}
                         filterOption={(input, option) =>
                             option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                         }
                     >
-                        <Option value="jack">Jack</Option>
-                        <Option value="lucy">Lucy</Option>
-                        <Option value="tom">Tom</Option>
+                        <Option value="admin">管理员</Option>
+                        <Option value="developer">研发</Option>
+                        <Option value="manager">客服</Option>
                     </Select>
                 </Form.Item>
             </Form>

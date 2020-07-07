@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react'
 import TableList from './tableList'
-import { Button, Col, Row, Input } from 'antd'
+import { Button, Col, Row, Input, Form } from 'antd'
 import { SearchOutlined } from "@ant-design/icons";
 import AddUser from './addUser'
 
@@ -9,38 +9,31 @@ function User(){
     const [visible, setVisible] = useState(false)
     const [confirmLoading, setConfirmLoading] = useState(false)
 
-    //const userRef = useRef(null)
+    const [form] = Form.useForm()
 
     const dataSource = [
         {
             key: '1',
-            name: '胡彦斌',
-            age: 32,
-            address: '西湖区湖底公园1号',
+            name: 'pengfei',
+            role: "管理员",
+            created_user: '张三',
+            created_at: '2020-09-09 12:00:00'
         },
         {
             key: '2',
-            name: '胡彦祖',
-            age: 42,
-            address: '西湖区湖底公园1号',
+            name: 'lisi',
+            role: "客服",
+            created_user: '王杰',
+            created_at: '2020-10-09 12:00:00'
         },
     ];
 
     const handleOk = () => {
-        //userRef.current.validateFields((err, o)=> {
-            //if(!err){
-                //console.log("err", err, o)
-            //}
-        //})
-        console.log("val")
-    }
-    const onFinish = (val) => {
-        //userRef.current.validateFields((err, o)=> {
-            //if(!err){
-                //console.log("err", err, o)
-            //}
-        //})
-        console.log("val", val)
+        form.validateFields().then(values => {
+            console.log("values111", values)
+        }, err => {
+            console.log("err values", err)
+        })
     }
 
     return <Fragment>
@@ -53,7 +46,7 @@ function User(){
             </Col>
         </Row>
         <TableList dataSource={dataSource} />
-        <AddUser visible={visible} handleOk={()=>handleOk()} handleCancel={()=> setVisible(false)} confirmLoading={confirmLoading} onFinish={(val)=>onFinish(val)}/>
+        <AddUser visible={visible} handleOk={()=>handleOk()} handleCancel={()=> setVisible(false)} confirmLoading={confirmLoading} form={form} />
     </Fragment>
 }
 
