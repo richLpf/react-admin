@@ -1,7 +1,5 @@
-import React, { Fragment } from 'react'
-import routes from './router'
-import { withRouter } from 'react-router-dom'
-import { Menu } from 'antd'
+import React from 'react'
+import { lazy } from 'react'
 import {
   UserOutlined,
   VideoCameraOutlined,
@@ -10,64 +8,115 @@ import {
   MenuFoldOutlined,
   DashboardOutlined
 } from "@ant-design/icons";
-import { HashRouter as Router, Link, Route } from "react-router-dom";
 
-const { SubMenu } = Menu;
+/*
+  Define Menus Paths
+    一级菜单必须加入Icon；二级菜单无Icon；不在菜单的须隐藏，加 hidden: true；(除index.js 外，习惯文件名大写表示菜单展示 ^▽^)
+    权限控制参数 - permissions，设置可访问的用户角色，数组形式，如：permissions: ['administrator', 'tester'] 等，无权限菜单也不展示
+ */
+// Projects
+const EChart = import('@/page/chart/echarts');
+const Antv = import("@/page/chart/bizcharts");
+const HeaderInfo = import("@/component/HeaderInfo");
+const NotFound = import("@/page/NotFound/404");
+const Progress = import("@/page/progress");
+const Tree = import("@/page/tree");
+const Demo = import("@/page/bases/demo");
+const DashBoard1 = import("@/page/dashboard/dashboard1")
+const DashBoard2 = import("@/page/dashboard/dashboard2")
+const Editor = import('@/page/bases/Editor')
+const AdminRole = import('@/page/admin/role')
+const AdminUser = import('@/page/admin/user')
+const About = import('@/page/about')
 
-function Menus(props){
+const routes = [
+    {
+      name: '看板',
+      key: '/dashboard',
+      icon: <MenuUnfoldOutlined />,
+      children: [
+        {
+          name: '看板一',
+          key: '/one',
+          component: lazy(() => DashBoard1),
+        },
+        {
+          name: '看板二',
+          key: '/two',
+          component: lazy(() => DashBoard2),
+        }
+      ]
+    },
+    {
+      name: '图表',
+      key: '/chart',
+      icon: <VideoCameraOutlined />,
+      children: [
+        {
+          name: 'Echart',
+          key: '/echart',
+          component: lazy(() => EChart),
+        },
+        {
+          name: 'Antv',
+          key: '/antv',
+          component: lazy(() => Antv),
+        },
+      ]
+    },
+    {
+      name: '基础组件',
+      key: '/base',
+      icon: <LaptopOutlined />,
+      children: [
+        {
+          name: 'progress',
+          key: '/progress',
+          component: lazy(() => Progress),
+        },
+        {
+          name: 'tree',
+          key: '/tree',
+          component: lazy(() => Tree),
+        },
+        {
+          name: 'demo',
+          key: '/demo',
+          component: lazy(() => Demo),
+        },
+        {
+          name: '富文本',
+          key: '/editor',
+          component: lazy(() => Editor),
+        },
+      ]
+    },
+    {
+      name: '权限管理',
+      key: '/premission',
+      icon: <MenuUnfoldOutlined />,
+      children: [
+        {
+          name: '用户管理',
+          key: '/user',
+          component: lazy(() => AdminUser),
+        },
+        {
+          name: '角色管理',
+          key: '/role',
+          component: lazy(() => AdminRole),
+        }
+      ]
+    },{
+      name: '系统设置',
+      key: '/system',
+      icon: <MenuFoldOutlined />,
+      children: [{
+        name: '关于我们',
+        key: '/about',
+        component: lazy(()=> About)
+      }]
+    }
+]
 
-	const { location, history } = props
-
-	const hasChild = (menu) => {
-		return Array.isArray(menu.children) && menu.children.length > 0
-	}
-
-	const genSubMenu = (menu) => {
-		const { icon, key, name } = menu
-		return (
-			<SubMenu 
-				key={key} 
-				icon={icon} 
-				title={name}>
-				{genMenus(menu.children)}
-			</SubMenu>
-		)
-	}
-
-	const genMenItem = (menu) => {
-		const { hidden, icon, name, key } = menu
-		return (
-			<Menu.Item key={key} icon={icon?icon:null}>
-                <Link to={key}>
-                  <span>{name}</span>
-                </Link>
-            </Menu.Item>
-        )
-	}
-
-	const genMenus = (routes) => {
-		return routes.reduce((prev, next) => {
-			return prev.concat(
-				hasChild(next) ? genSubMenu(next) : genMenItem(next)
-			)
-		}, [])
-	}
-
-	const handleNavClick = (key) => {
-		console.log("key", key)
-		history.push(key)
-	}
-
-	return <Fragment>
-		<Menu
-	      theme="dark"
-	      mode="inline"
-	      selectedKeys={[location.pathname]}
-	      onClick={handleNavClick}
-	    >
-	      {genMenus(routes)}
-	    </Menu>
-	</Fragment>
-}
-
-export default withRouter(Menus)
+export default routes

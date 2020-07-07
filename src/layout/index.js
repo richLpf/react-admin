@@ -9,7 +9,8 @@ import {
   DashboardOutlined
 } from "@ant-design/icons";
 import { HashRouter as Router, Link, Route } from "react-router-dom";
-import RouterComponent from '@/router'
+import ContentComponent from './content'
+import MenuComponent from './menu'
 import EChart from "@/page/chart/echarts";
 import Antv from "@/page/chart/bizcharts";
 import HeaderInfo from "@/component/HeaderInfo";
@@ -27,7 +28,7 @@ import About from '@/page/about'
 const { Header, Content, Sider } = Layout;
 //const { SubMenu } = Menu;
 
-function Home(props) {
+function LayoutComponent(props) {
   const [collapsed, setCollapsed] = useState(false);
 
   const toggle = () => {
@@ -47,7 +48,7 @@ function Home(props) {
           }}
         >
           <div className="logo" />
-          <RouterComponent />
+          <MenuComponent />
         </Sider>
       </Router>
       <Layout className="site-layout">
@@ -64,33 +65,10 @@ function Home(props) {
           )}
           <HeaderInfo />
         </Header>
-        <Content
-          className="site-layout-background"
-          style={{
-            margin: "24px 16px",
-            padding: 24,
-            minHeight: 280,
-          }}
-        >
-          <Router>
-            <Route exact path="/" component={DashBoard1} />
-            <Route exact path="/dashboard1" component={DashBoard1} />
-            <Route exact path="/dashboard2" component={DashBoard2} />
-            <Route exact path="/echart" component={EChart} />
-            <Route exact path="/bizchart" component={Antv} />
-            <Route exact path="/progress" component={Progress} />
-            <Route exact path="/404" component={NotFound} />
-            <Route exact path="/tree" component={Tree} />
-            <Route exact path="/demo" component={Demo} />
-            <Route exact path="/editor" component={Editor} />
-            <Route exact path="/user" component={AdminUser} />
-            <Route exact path="/role" component={AdminRole} />
-            <Route exact path="/about" component={About} />
-          </Router>
-        </Content>
+        <ContentComponent />
       </Layout>
     </Layout>
   );
 }
 
-export default Home;
+export default LayoutComponent;
