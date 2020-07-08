@@ -47,6 +47,7 @@
 }
 .header-right {
   float: right;
+  margin-right: 10px;
 }
 
 /* 行间距 */

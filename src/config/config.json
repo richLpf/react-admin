@@ -1,0 +1,11 @@
+{
+	"TaskAPI": {
+		"development": "http://192.168.0.1",
+		"production": "http://www.test.com"
+	},
+	"ProjectAPI": {
+		"development": "http://192.168.0.1",
+		"production": "http://www.test.com"
+	},
+	"LinkURL": "http://www.test.com"
+}

@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react'
-import { Input, Button, Checkbox, Form } from 'antd';
+import { Input, Button, Checkbox, Form, message } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 
 
@@ -9,6 +9,8 @@ function LoginForm(props){
         const { username, password } = values
         if(username==="admin"&&password==="admin"){
             window.location.href = "/"
+        }else{
+            message.error("账号为：admin, 密码为：admin")
         }
     };
     return <Fragment>
