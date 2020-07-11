@@ -14,7 +14,7 @@ function ContentComponent(props){
     const genRoute = (menu) => {
         const { key, component } = menu
         return (
-            <Route exact path={key} component={component} />
+            <Route exact key={key} path={key} component={component} />
         )
     }
 
