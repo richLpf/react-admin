@@ -28,6 +28,7 @@ const Editor = import('@/page/bases/Editor')
 const AdminRole = import('@/page/admin/role')
 const AdminUser = import('@/page/admin/user')
 const About = import('@/page/about')
+const TableDemo = import('@/page/Table')
 
 const routes = [
     {
@@ -89,6 +90,11 @@ const routes = [
           key: '/editor',
           component: lazy(() => Editor),
         },
+        {
+          name: '表格',
+          key: '/table',
+          component: lazy(() => TableDemo)
+        }
       ]
     },
     {
