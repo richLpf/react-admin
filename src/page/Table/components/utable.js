@@ -19,6 +19,8 @@ function UTable(props){
 		search,
 		download,
 		filename,
+		scroll: {y: 400},
+		tableLayout: 'auto',
 		...rest
 	}
 

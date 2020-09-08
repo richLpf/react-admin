@@ -1,6 +1,8 @@
 import React, { Fragment } from 'react'
-import { Input, Button, Checkbox, Form, message } from 'antd';
+import { Input, Button, Checkbox, Form, message, Select } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
+
+const { Option } = Select
 
 
 function LoginForm(props){
@@ -45,7 +47,6 @@ function LoginForm(props){
                 Forgot password
                 </a>
             </Form.Item>
-
             <Form.Item>
                 <Button type="primary" htmlType="submit" className="login-form-button">
                     登录
