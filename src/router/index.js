@@ -35,6 +35,7 @@ const AdminUser = import('@/page/admin/user')
 const About = import('@/page/about')
 const TableDemo = import('@/page/Table')
 const BigDashboard = import('@/page/bigDashboard')
+const Page404 = import('@/page/ErrorPage/Page404')
 
 const routes = [
     {
@@ -182,6 +183,10 @@ const routes = [
         key: '/about',
         component: lazy(()=> About)
       }]
+    },{
+      name: '404',
+      hidden: true,
+      component: lazy(()=> Page404)
     }
 ]
 

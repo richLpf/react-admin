@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react'
 import routes from '@/router'
-import { HashRouter as Router, Route } from "react-router-dom";
+import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import { Layout, Spin } from 'antd'
 const { Content } = Layout
 
@@ -14,7 +14,7 @@ function ContentComponent(props){
     const genRoute = (menu) => {
         const { key, component } = menu
         return (
-            <Route exact key={key} path={key} component={component} />
+           key?<Route exact key={key} path={key} component={component} />:<Route key='404' component={component} />
         )
     }
 
@@ -25,6 +25,9 @@ function ContentComponent(props){
             )
         }, [])
     }
+
+
+    console.log("菜单", genRoutes(routes))
 
     return  <Content
             className="site-layout-background"
@@ -40,9 +43,9 @@ function ContentComponent(props){
                   </div>
                 }
               >
-                <Router>
+                <Switch>
                     {genRoutes(routes)}
-                </Router>
+                </Switch>
             </Suspense>
     </Content>
 }

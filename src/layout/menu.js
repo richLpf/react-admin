@@ -15,26 +15,32 @@ function Menus(props){
 	}
 
 	const genSubMenu = (menu) => {
-		const { icon, key, name } = menu
-		return (
-			<SubMenu 
-				key={key} 
-				icon={icon} 
-				title={name}>
-				{genMenus(menu.children)}
-			</SubMenu>
-		)
+		const { icon, key, name, hidden } = menu
+		if(!hidden){
+			return (
+				<SubMenu 
+					key={key} 
+					icon={icon} 
+					title={name}>
+					{genMenus(menu.children)}
+				</SubMenu>
+			)
+		}
+		return null
 	}
 
 	const genMenItem = (menu) => {
 		const { hidden, icon, name, key } = menu
-		return (
-			<Menu.Item key={key} icon={icon?icon:null}>
-                <Link to={key}>
-                  <span>{name}</span>
-                </Link>
-            </Menu.Item>
-        )
+		if(!hidden){
+			return (
+				<Menu.Item key={key} icon={icon?icon:null}>
+		            <Link to={key}>
+		              <span>{name}</span>
+		            </Link>
+		        </Menu.Item>
+		    )
+		}
+		return null
 	}
 
 	const genMenus = (routes) => {
