@@ -6,7 +6,12 @@ import {
   LaptopOutlined,
   MenuUnfoldOutlined,
   MenuFoldOutlined,
-  DashboardOutlined
+  DashboardOutlined,
+  TableOutlined,
+  AreaChartOutlined,
+  ProfileOutlined,
+  UserAddOutlined,
+  SettingOutlined
 } from "@ant-design/icons";
 
 /*
@@ -29,12 +34,13 @@ const AdminRole = import('@/page/admin/role')
 const AdminUser = import('@/page/admin/user')
 const About = import('@/page/about')
 const TableDemo = import('@/page/Table')
+const BigDashboard = import('@/page/bigDashboard')
 
 const routes = [
     {
       name: '看板',
       key: '/dashboard',
-      icon: <MenuUnfoldOutlined />,
+      icon: <DashboardOutlined />,
       children: [
         {
           name: '看板一',
@@ -45,13 +51,62 @@ const routes = [
           name: '看板二',
           key: '/two',
           component: lazy(() => DashBoard2),
+        },{
+          name: '大屏',
+          key: '/big',
+          component: lazy(() => BigDashboard),
+        }
+      ]
+    },
+    {
+      name: '表格和EXCEL',
+      key: '/table',
+      icon: <TableOutlined />,
+      children: [
+        {
+          name: '下载excel',
+          key: '/table1',
+          component: lazy(() => TableDemo)
+          
+        },
+        {
+          name: '表格编辑',
+          key: '/table2',
+          component: lazy(() => Antv),
+        },
+        {
+          name: '上传EXCEL',
+          key: '/table3',
+          component: lazy(() => EChart)        
+        }
+      ]
+    },
+    {
+      name: '详情页面',
+      key: '/detail',
+      icon: <ProfileOutlined />,
+      children: [
+        {
+          name: 'detail1',
+          key: '/detail1',
+          component: lazy(() => EChart),
+        },
+        {
+          name: 'detail2',
+          key: '/detail2',
+          component: lazy(() => Antv),
+        },
+        {
+          name: '水印',
+          key: '/detail3',
+          component: lazy(() => TableDemo)
         }
       ]
     },
     {
       name: '图表',
       key: '/chart',
-      icon: <VideoCameraOutlined />,
+      icon: <AreaChartOutlined />,
       children: [
         {
           name: 'Echart',
@@ -91,16 +146,21 @@ const routes = [
           component: lazy(() => Editor),
         },
         {
-          name: '表格',
-          key: '/table',
-          component: lazy(() => TableDemo)
+          name: '返回顶部',
+          key: '/toTop',
+          component: lazy(() => Editor),
+        },
+        {
+          name: '复制',
+          key: '/clipboard',
+          component: lazy(() => Editor),
         }
       ]
     },
     {
       name: '权限管理',
       key: '/premission',
-      icon: <MenuUnfoldOutlined />,
+      icon: <UserAddOutlined />,
       children: [
         {
           name: '用户管理',
@@ -116,7 +176,7 @@ const routes = [
     },{
       name: '系统设置',
       key: '/system',
-      icon: <MenuFoldOutlined />,
+      icon: <SettingOutlined />,
       children: [{
         name: '关于我们',
         key: '/about',

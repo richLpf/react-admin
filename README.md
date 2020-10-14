@@ -1,72 +1,3 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `yarn start`
-
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
-
 ## react 切换端口号运行
 
 ## 生成路由，组织路由，登录页面
@@ -100,6 +31,9 @@ package.json
 每次运行npm run prettier  /src目录下的js文件将会进行格式化
 
 
+已完成：
+
+
 
 待完成：
 
@@ -108,6 +42,29 @@ package.json
 	- 列表全选，折叠展开
 - 【P0】 水印功能
 - 【P0】 看板展示信息
+- 【P0】 表格和excel
+
+一、大屏页面展示
+
+二、罗盘的全局搜索功能
+
+一、各种表单布局
+- 填写表单
+
+二、各种详情页面
+- 水印功能
+
+三、各种表格封装
+- 显示不同的表格头
+
+四、表格和Excel
+- 表格下载excel
+- 表格上传excel
+- 表格选择下载数据
+- 表格编辑
+- 拖拽
+
+
 
 规划：
 
@@ -127,6 +84,12 @@ package.json
 - axios的引入和封装
 - oss的引入
 - 性能监控和优化
+- 页面放大F11效果
+- 大屏幕展示和全局总览设计
+- mockjs引入
+- markdown
+- 
+
 
 
 待定：
@@ -233,6 +196,44 @@ https://juejin.im/post/5af03345f265da0b7964cf50
 
 搜索配置，弹框，页面搜索
 
+### 倒计时展示时间，react中使用定时器的方法
+
+```
+const [currentDate, setCurrentDate] = useState(dateNow)
+
+const timerRef = useRef()
+
+useEffect(() => {
+    timerRef.current = setInterval(() => {
+        setCurrentDate(moment().format("YYYY年MM月DD日 HH:mm:ss"))
+    }, 1000)
+    return () => {
+        timerRef.current && clearInterval(timerRef.current)
+    }
+})
+```
+
+### 全屏放大和缩小（F11效果）
+
+```
+//cnpm i -S screenfull
+
+if(screenfull.isEnabled){
+    screenfull.toggle()
+}
+
+// 底层实现的方式探索
+```
+
+### 水印的实现
+
+
+### 大屏展示
+
+dataV
+
+### react 引导页面
+
 
 
 
@@ -247,5 +248,7 @@ https://juejin.im/post/5af03345f265da0b7964cf50
 ## 常见问题
 
 结尾
+
+项目增加吐槽的地址，增加跳转的入口到github
 
 欢迎加入前端群：10232323233

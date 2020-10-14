@@ -1,4 +1,5 @@
 @import '~antd/dist/antd.css';
+@import '~react-user-guide/dist/custom-style.css';
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
