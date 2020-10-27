@@ -8,8 +8,8 @@ function TableList(props){
     const columns = [
         {
             title: '用户名',
-            dataIndex: 'name',
-            key: 'name',
+            dataIndex: 'username',
+            key: 'username',
         },
         {
             title: '角色',
@@ -33,7 +33,7 @@ function TableList(props){
         }
     ];
 
-    return <Table bordered dataSource={dataSource} columns={columns} />;
+    return <Table rowKey="id" bordered dataSource={dataSource} columns={columns} />;
 }
 
 export default TableList;

@@ -1,18 +1,23 @@
-import React, { Fragment } from 'react'
+import React, { Fragment, useState, useEffect } from 'react'
 import { Modal, Form, Transfer, Input } from 'antd'
-
 
 
 function AddModal(props){
 
-    const { visible, handleOk, handleCancel, confirmLoading, mockData, form, targetKeys } = props
+    const { visible, handleOk, handleCancel, confirmLoading, form, resourceList } = props
 
     const { TextArea } = Input;
+    const [selectedKeys, setSelectedKeys] = useState([])
+    const [targetKeys, setTargetKeys] = useState([])
+    useEffect(() => {
 
-    const filterOption = (inputValue, option) => option.description.indexOf(inputValue) > -1;
+    }, [])
 
-    const handleChange = targetKeys => {
-      //this.setState({ targetKeys });
+    const filterOption = (inputValue, option) => option.name.indexOf(inputValue) > -1;
+
+    const handleChange = selected => {
+      console.log("targetKeys", selected)
+      setTargetKeys(selected)
     };
 
     const layout = {
@@ -23,6 +28,10 @@ function AddModal(props){
     const handleSearch = (dir, value) => {
       console.log('search:', dir, value);
     };
+
+    const onSelectChange = (val) => {
+      setSelectedKeys(val)
+    }
 
     return <Fragment>
         <Modal
@@ -65,17 +74,21 @@ function AddModal(props){
 
                 <Form.Item
                     label="操作权限"
-                    name="role"
+                    name="permission"
                     rules={[{ required: true, message: '请选择权限' }]}
                 >
                     <Transfer
-                      dataSource={mockData}
+                      rowKey={record => record.id}
+                      dataSource={resourceList}
+                      titles={['待选择权限', '选择权限']}
                       showSearch
                       filterOption={filterOption}
                       targetKeys={targetKeys}
+                      onSelectChange={onSelectChange}
+                      selectedKeys={selectedKeys}
                       onChange={handleChange}
                       onSearch={handleSearch}
-                      render={item => item.title}
+                      render={item => item.name}
                     />
                 </Form.Item>
             </Form>

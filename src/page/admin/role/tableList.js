@@ -43,7 +43,7 @@ function TableList(props){
         }
     ];
 
-    return <Table bordered dataSource={dataSource} columns={columns} />;
+    return <Table rowKey="id" bordered dataSource={dataSource} columns={columns} />;
 }
 
 export default TableList;
