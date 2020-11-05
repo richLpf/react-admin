@@ -5,7 +5,9 @@ const { Option } = Select
 
 function AddUser(props){
 
-    const { visible, handleCancel, handleOk, confirmLoading, form } = props
+    const { visible, handleCancel, handleOk, confirmLoading, form, roleList } = props
+
+    console.log("roleList", roleList)
 
     const layout = {
         labelCol: { span: 4 },
@@ -35,7 +37,7 @@ function AddUser(props){
             >
                 <Form.Item
                     label="英文名"
-                    name="username"
+                    name="user"
                     rules={[{ required: true, message: '请输入英文名' }]}
                 >
                     <Input placeholder="请输入英文名"/>
@@ -43,20 +45,21 @@ function AddUser(props){
 
                 <Form.Item
                     label="所属角色"
-                    name="role"
+                    name="role_ids"
                     rules={[{ required: true, message: '请选择角色' }]}
                 >
                     <Select
                         showSearch
+                        mode="multiple"
                         placeholder="选择角色"
                         optionFilterProp="children"
                         filterOption={(input, option) =>
                             option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
                         }
                     >
-                        <Option value="admin">管理员</Option>
-                        <Option value="developer">研发</Option>
-                        <Option value="manager">客服</Option>
+                        {roleList?roleList.map(item => {
+                            return <Option value={item.id} key={item.id}>{item.role}</Option>
+                        }):null}
                     </Select>
                 </Form.Item>
             </Form>

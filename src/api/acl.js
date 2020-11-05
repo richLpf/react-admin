@@ -2,7 +2,7 @@ import Fetch from './request'
 
 export const getUser = (params) => {
 	return Fetch({
-		url: '/acl/user/list',
+		url: '/acl/user/rolelist',
 		method: 'get',
 		params
 	})
@@ -10,11 +10,12 @@ export const getUser = (params) => {
 
 export const userAdd = (data) => {
 	return Fetch({
-		url: '/acl/user/add',
+		url: '/acl/user/role/add',
 		method: 'post',
 		data
 	})
 }
+
 export const userDetail = (id, params) => {
 	return Fetch({
 		url: `/acl/user/detail/${id}`,
@@ -49,6 +50,14 @@ export const roleDetail = (id, params) => {
 export const getResourceList = (params) => {
 	return Fetch({
 		url: `/acl/resource/list`,
+		method: 'get',
+		params
+	})
+}
+
+export const getMenuAcl = (params) => {
+	return Fetch({
+		url: '/acl/user/permission',
 		method: 'get',
 		params
 	})

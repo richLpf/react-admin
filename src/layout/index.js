@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Layout } from "antd";
 import {
   UserOutlined,
@@ -11,6 +11,7 @@ import {
 import { HashRouter as Router, Link, Route } from "react-router-dom";
 import ContentComponent from './content'
 import MenuComponent from './menu'
+import { getMenuAcl } from '@/api/acl'
 import EChart from "@/page/chart/echarts";
 import Antv from "@/page/chart/bizcharts";
 import HeaderInfo from "@/component/HeaderInfo";
@@ -30,13 +31,28 @@ const { Header, Content, Sider } = Layout;
 //const { SubMenu } = Menu;
 
 
-
 function LayoutComponent(props) {
   const [collapsed, setCollapsed] = useState(false);
 
   const toggle = () => {
     setCollapsed(!collapsed);
   };
+
+  useEffect(() => {
+    let obj = {
+      user: 'pengfei.lv',
+      namespace: 'demo',
+      category: 'menu'
+    }
+    getMyMenu(obj)
+  }, [])
+
+  const getMyMenu = (data) => {
+    getMenuAcl(data).then(res => {
+      console.log("获取菜单", res)
+    })
+  }
+
 
   return (
     <Layout>

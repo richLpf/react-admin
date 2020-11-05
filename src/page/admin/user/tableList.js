@@ -1,15 +1,16 @@
 import React from 'react'
 import { Table } from 'antd'
+import moment from 'moment'
 
 function TableList(props){
 
-    const { dataSource } = props
+    const { dataSource, loading } = props
 
     const columns = [
         {
             title: '用户名',
-            dataIndex: 'username',
-            key: 'username',
+            dataIndex: 'user',
+            key: 'user',
         },
         {
             title: '角色',
@@ -18,13 +19,16 @@ function TableList(props){
         },
         {
             title: '授权人',
-            dataIndex: 'created_user',
+            dataIndex: 'created_by',
             key: 'created_user',
         },
         {
             title: '授权时间',
             dataIndex: 'created_at',
             key: 'created_at',
+            render: (value) => {
+                return moment(value).format("YYYY-MM-DD HH:mm:ss")
+            }
         },
         {
             title: '操作',
@@ -33,7 +37,7 @@ function TableList(props){
         }
     ];
 
-    return <Table rowKey="id" bordered dataSource={dataSource} columns={columns} />;
+    return <Table rowKey="id" loading={loading} bordered dataSource={dataSource} columns={columns} />;
 }
 
 export default TableList;

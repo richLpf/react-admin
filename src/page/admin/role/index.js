@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useEffect } from 'react'
 import TableList from './tableList'
-import { Button, Col, Row, Input, Form } from 'antd'
+import { Button, Col, Row, Input, Form, message } from 'antd'
 import { SearchOutlined } from "@ant-design/icons";
 import AddModal from './addModal'
 import { roleAdd, getRoleList, getResourceList } from '@/api/acl'
@@ -31,9 +31,10 @@ function User(){
 
     const handleOk = () => {
         form.validateFields().then(values => {
+            values.namespace = "demo"
             console.log("values111", values)
             //添加角色成功
-            //handleRoleAdd(values)
+            handleRoleAdd(values)
         }, err => {
             console.log("err values", err)
         })
@@ -48,7 +49,13 @@ function User(){
 
     const handleRoleAdd = (data) => {
         roleAdd(data).then(res => {
-            console.log("添加角色", res.Data)
+            if(res.RetCode === 0){
+                message.success("添加成功")
+                getRole()
+            }else{
+                message.error(res.Message)
+            }
+            setVisible(false)
         })
     }
 

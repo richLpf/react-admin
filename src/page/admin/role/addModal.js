@@ -52,7 +52,7 @@ function AddModal(props){
             >
                 <Form.Item
                     label="英文名"
-                    name="username"
+                    name="user"
                     rules={[{ required: true, message: '请输入英文名' }]}
                 >
                     <Input placeholder="请输入英文名"/>
@@ -66,7 +66,7 @@ function AddModal(props){
                 </Form.Item>
                 <Form.Item
                     label="描述"
-                    name="description"
+                    name="describe"
                     rules={[{ required: true, message: '请输入描述信息' }]}
                 >
                     <TextArea rows={4} placeholder="请输入英文名"/>
