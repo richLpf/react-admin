@@ -1,17 +1,20 @@
 import React from 'react'
-import { Table, Button } from 'antd'
+import { Table, Button, Popconfirm } from 'antd'
 import { EditOutlined, DeleteOutlined } from '@ant-design/icons'
 import moment from 'moment'
 
 function TableList(props){
 
-    const { dataSource } = props
-
-    console.log("获取角色列表", dataSource)
+    const { dataSource, handleEdit, handleDelete, loading } = props
 
     const columns = [
         {
             title: '角色名',
+            dataIndex: 'name',
+            key: 'name'
+        },
+        {
+            title: '角色标识',
             dataIndex: 'role',
             key: 'role',
         },
@@ -35,16 +38,23 @@ function TableList(props){
         },
         {
             title: '操作',
-            render: () => {
+            render: (_, record) => {
                 return  <div>
-                    <Button shape="circle" style={{marginRight: '8px'}} icon={<EditOutlined />} />
-                    <Button shape="circle" danger icon={<DeleteOutlined />} />
+                    <Button shape="circle" style={{marginRight: '8px'}} icon={<EditOutlined />} onClick={()=>handleEdit(record)}/>
+                    <Popconfirm
+                        title="确认删除"
+                        onConfirm={()=>handleDelete(record)}
+                        okText="是"
+                        cancelText="否"
+                    >
+                        <Button shape="circle" danger icon={<DeleteOutlined />} />
+                    </Popconfirm>
                 </div>
             }
         }
     ];
 
-    return <Table rowKey="id" bordered dataSource={dataSource} columns={columns} />;
+    return <Table rowKey="id" bordered dataSource={dataSource} columns={columns} loading={loading}/>;
 }
 
 export default TableList;

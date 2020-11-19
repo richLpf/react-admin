@@ -6,14 +6,10 @@ const { Option } = Select
 function AddUser(props){
 
     const { visible, handleCancel, handleOk, confirmLoading, form, roleList } = props
-
-    console.log("roleList", roleList)
-
     const layout = {
         labelCol: { span: 4 },
         wrapperCol: { span: 17 },
     }
-
     const onFinish = (val) => {
         console.log("val填写表单", val)
     }

@@ -1,24 +1,19 @@
-import React, { Fragment, useState, useEffect } from 'react'
+import React, { Fragment } from 'react'
 import { Modal, Form, Transfer, Input } from 'antd'
 
 
 function AddModal(props){
 
-    const { visible, handleOk, handleCancel, confirmLoading, form, resourceList } = props
+    const { visible, handleOk, handleCancel, confirmLoading, form, resourceList, isNew, targetKeys, handleChange } = props
 
     const { TextArea } = Input;
-    const [selectedKeys, setSelectedKeys] = useState([])
-    const [targetKeys, setTargetKeys] = useState([])
-    useEffect(() => {
-
-    }, [])
+    //const [targetKeys, setTargetKeys] = useState([])
 
     const filterOption = (inputValue, option) => option.name.indexOf(inputValue) > -1;
 
-    const handleChange = selected => {
-      console.log("targetKeys", selected)
-      setTargetKeys(selected)
-    };
+    //const handleChange = selected => {
+      //setTargetKeys(selected)
+    //};
 
     const layout = {
         labelCol: { span: 4 },
@@ -29,13 +24,9 @@ function AddModal(props){
       console.log('search:', dir, value);
     };
 
-    const onSelectChange = (val) => {
-      setSelectedKeys(val)
-    }
-
     return <Fragment>
         <Modal
-          title="编辑角色"
+          title={isNew?"新增角色":"编辑角色"}
           visible={visible}
           onOk={handleOk}
           onCancel={handleCancel}
@@ -51,9 +42,9 @@ function AddModal(props){
                 form={form}
             >
                 <Form.Item
-                    label="英文名"
-                    name="user"
-                    rules={[{ required: true, message: '请输入英文名' }]}
+                    label="角色名"
+                    name="name"
+                    rules={[{ required: true, message: '请输入角色中文名' }]}
                 >
                     <Input placeholder="请输入英文名"/>
                 </Form.Item>
@@ -69,7 +60,7 @@ function AddModal(props){
                     name="describe"
                     rules={[{ required: true, message: '请输入描述信息' }]}
                 >
-                    <TextArea rows={4} placeholder="请输入英文名"/>
+                    <TextArea rows={4} placeholder="请输入描述信息"/>
                 </Form.Item>
 
                 <Form.Item
@@ -84,8 +75,6 @@ function AddModal(props){
                       showSearch
                       filterOption={filterOption}
                       targetKeys={targetKeys}
-                      onSelectChange={onSelectChange}
-                      selectedKeys={selectedKeys}
                       onChange={handleChange}
                       onSearch={handleSearch}
                       render={item => item.name}

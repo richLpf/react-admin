@@ -1,10 +1,14 @@
 import React, { Suspense } from 'react'
-import routes from '@/router'
+//import routes from '@/router'
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import { Layout, Spin } from 'antd'
 const { Content } = Layout
 
 function ContentComponent(props){
+
+    const { routes } = props
+
+    console.log("routes", routes)
 
     const hasChild = (menu) => {
         const { children } = menu
@@ -25,10 +29,6 @@ function ContentComponent(props){
             )
         }, [])
     }
-
-
-    console.log("菜单", genRoutes(routes))
-
     return  <Content
             className="site-layout-background"
             style={{

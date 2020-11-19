@@ -1,19 +1,15 @@
 import React, { Fragment } from 'react'
-import routes from '@/router'
-import { withRouter } from 'react-router-dom'
+//import routes from '@/router'
 import { Menu } from 'antd'
-import { HashRouter as Router, Link, Route } from "react-router-dom";
+import { HashRouter as Router, Link, Route, withRouter } from "react-router-dom";
 
 const { SubMenu } = Menu;
 
 function Menus(props){
-
-	const { location, history } = props
-
+	const { location, history, routes } = props
 	const hasChild = (menu) => {
 		return Array.isArray(menu.children) && menu.children.length > 0
 	}
-
 	const genSubMenu = (menu) => {
 		const { icon, key, name, hidden } = menu
 		if(!hidden){
@@ -28,21 +24,19 @@ function Menus(props){
 		}
 		return null
 	}
-
 	const genMenItem = (menu) => {
 		const { hidden, icon, name, key } = menu
 		if(!hidden){
 			return (
 				<Menu.Item key={key} icon={icon?icon:null}>
-		            <Link to={key}>
+					<Link to={key}>
 		              <span>{name}</span>
-		            </Link>
+					</Link>
 		        </Menu.Item>
 		    )
 		}
 		return null
 	}
-
 	const genMenus = (routes) => {
 		return routes.reduce((prev, next) => {
 			return prev.concat(
@@ -50,12 +44,9 @@ function Menus(props){
 			)
 		}, [])
 	}
-
 	const handleNavClick = (key) => {
-		console.log("key", key)
 		history.push(key)
 	}
-
 	return <Fragment>
 		<Menu
 	      theme="dark"

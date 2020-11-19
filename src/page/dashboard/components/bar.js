@@ -4,8 +4,6 @@ import { barOption } from './option'
 
 function DashPie(props){
 
-    console.log("props", props)
-
     return <Fragment>
         <PieDemo option={barOption}/>
     </Fragment>

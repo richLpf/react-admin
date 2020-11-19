@@ -36,6 +36,7 @@ const About = import('@/page/about')
 const TableDemo = import('@/page/Table')
 const BigDashboard = import('@/page/bigDashboard')
 const Page404 = import('@/page/ErrorPage/Page404')
+const Resources = import('@/page/admin/resources')
 
 const routes = [
     {
@@ -160,17 +161,17 @@ const routes = [
     },
     {
       name: '权限管理',
-      key: '/premission',
+      key: '/permission',
       icon: <UserAddOutlined />,
       children: [
         {
           name: '用户管理',
-          key: '/user',
+          key: '/permission/user',
           component: lazy(() => AdminUser),
         },
         {
           name: '角色管理',
-          key: '/role',
+          key: '/permission/role',
           component: lazy(() => AdminRole),
         }
       ]
@@ -183,11 +184,19 @@ const routes = [
         key: '/about',
         component: lazy(()=> About)
       }]
-    },{
+    }
+]
+
+export const publicRoutes = [{
+      key: '/resource',
+      name: '权限资源',
+      icon: <SettingOutlined />,
+      component: lazy(()=> Resources)
+},{
       name: '404',
       hidden: true,
       component: lazy(()=> Page404)
-    }
-]
+}]
+
 
 export default routes

@@ -47,11 +47,28 @@ export const roleDetail = (id, params) => {
 	})
 }
 
+// 资源信息
 export const getResourceList = (params) => {
 	return Fetch({
 		url: `/acl/resource/list`,
 		method: 'get',
 		params
+	})
+}
+// 新增资源信息
+export const addResource = (data) => {
+	return Fetch({
+		url: `/acl/resource/add`,
+		method: 'post',
+		data
+	})
+}
+// 编辑资源信息
+export const updateResource = (data) => {
+	return Fetch({
+		url: `/acl/resource/update`,
+		method: 'post',
+		data
 	})
 }
 
@@ -60,5 +77,32 @@ export const getMenuAcl = (params) => {
 		url: '/acl/user/permission',
 		method: 'get',
 		params
+	})
+}
+
+export const delRole = (id) => {
+	return Fetch({
+		url: '/acl/role/delete',
+		method: 'post',
+		data: {
+			id
+		}
+	})
+}
+
+
+export const updateRole = (data) => {
+	return Fetch({
+		url: '/acl/role/update',
+		method: 'post',
+		data
+	})
+}
+
+
+export const RolePermission = (id) => {
+	return Fetch({
+		url: `/acl/role/permission/${id}`,
+		method: 'get'
 	})
 }

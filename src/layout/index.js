@@ -1,38 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { Layout } from "antd";
 import {
-  UserOutlined,
-  VideoCameraOutlined,
-  LaptopOutlined,
   MenuUnfoldOutlined,
   MenuFoldOutlined,
-  DashboardOutlined
 } from "@ant-design/icons";
 import { HashRouter as Router, Link, Route } from "react-router-dom";
 import ContentComponent from './content'
 import MenuComponent from './menu'
 import { getMenuAcl } from '@/api/acl'
-import EChart from "@/page/chart/echarts";
-import Antv from "@/page/chart/bizcharts";
 import HeaderInfo from "@/component/HeaderInfo";
-import NotFound from "@/page/NotFound/404";
-import Progress from "@/page/progress";
-import Tree from "@/page/tree";
-import Demo from "@/page/bases/demo";
-import DashBoard1 from "@/page/dashboard/dashboard1"
-import DashBoard2 from "@/page/dashboard/dashboard2"
-import Editor from '@/page/bases/Editor'
-import AdminRole from '@/page/admin/role'
-import AdminUser from '@/page/admin/user'
-import About from '@/page/about'
-
-
+import routes, { publicRoutes } from '@/router'
 const { Header, Content, Sider } = Layout;
-//const { SubMenu } = Menu;
-
 
 function LayoutComponent(props) {
+  
   const [collapsed, setCollapsed] = useState(false);
+  const [newRoutes, setNewRoutes] = useState([])
 
   const toggle = () => {
     setCollapsed(!collapsed);
@@ -49,10 +32,36 @@ function LayoutComponent(props) {
 
   const getMyMenu = (data) => {
     getMenuAcl(data).then(res => {
-      console.log("获取菜单", res)
+      if(res.RetCode === 0){
+        const p = res.Data.map(item => {
+          return ("-"+item.resource).replace(new RegExp(/-/g), "/")
+        })
+        generateRoute(p)
+      }
     })
   }
 
+  // 页面权限，将获取的资源存放在状态管理中，页面刷新重新获取
+  // 路由权限生成
+  const generateRoute = (permissions) => {
+    let result = []
+    routes.forEach(item => {
+      let itemRoute = item
+      if(item.children){
+        itemRoute.children = handleChildren(permissions, item.children) 
+      }
+      if(permissions.includes(item.key)){
+        result.push(itemRoute)    
+      }
+    });
+    setNewRoutes(result.concat(publicRoutes))
+  }
+
+  const handleChildren = (permissions, route) => {
+    return route.filter(item => {
+      return permissions.includes(item.key)
+    })
+  }
 
   return (
     <Layout>
@@ -67,7 +76,7 @@ function LayoutComponent(props) {
           }}
         >
           <div className="logo" />
-          <MenuComponent />
+          <MenuComponent routes={newRoutes} />
         </Sider>
       </Router>
       <Layout className="site-layout">
@@ -84,7 +93,7 @@ function LayoutComponent(props) {
           )}
           <HeaderInfo />
         </Header>
-        <ContentComponent />
+        {newRoutes.length>0?<ContentComponent routes={newRoutes} />:null}
       </Layout>
     </Layout>
   );

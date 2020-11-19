@@ -2,18 +2,16 @@ import axios from 'axios'
 
 const baseURL = process.env.REACT_APP_URL_API
 
-let remoteUser = ""
+let remoteUser = "dev"
 
 const service = axios.create({
 	baseURL,
 	timeout: 50000
 })
 
-
-
 service.interceptors.request.use(config => {
 	if(remoteUser){
-		config.headers['remoteUser'] = remoteUser ? remoteUser : "";
+		config.headers['remote_user'] = remoteUser ? remoteUser : "dev";
 	}
 	return config
 }, err => {

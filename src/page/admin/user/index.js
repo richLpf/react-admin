@@ -14,7 +14,6 @@ function User(){
     const [roleList, setRoleList] = useState([])
 
     useEffect(() => {
-        console.log("dayin")
         getUserList()
         getRole()
     },[])
@@ -24,7 +23,6 @@ function User(){
     const getUserList = () => {
         setLoading(true)
         getUser().then(res => {
-            console.log("用户列表", res)
             setUserList(res.Data)
             setLoading(false)
         })
@@ -32,7 +30,6 @@ function User(){
 
     const addUser = (data) => {
         userAdd(data).then(res => {
-            //console.log("添加用户", res)
             setVisible(false)
             getUserList()
         })
@@ -40,15 +37,12 @@ function User(){
 
     const getRole = () => {
         getRoleList().then(res => {
-            console.log("获取角色信息", res.Data)
             setRoleList(res.Data)
         })
     }
 
     const handleOk = () => {
-        console.log("确认")
         form.validateFields().then(values => {
-            console.log("values111", values)
             values.namespace = "demo"
             values.status = 1
             addUser(values)
