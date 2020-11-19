@@ -46,7 +46,7 @@ const routes = [
       children: [
         {
           name: '看板一',
-          key: '/one',
+          key: '/dashboard/one',
           component: lazy(() => DashBoard1),
         },
         {

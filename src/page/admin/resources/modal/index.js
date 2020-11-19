@@ -1,38 +1,9 @@
 import React, { Fragment } from 'react'
-import { Form, Input, Button, Checkbox, Modal } from 'antd'
-import { addResource, updateResource } from '@/api/acl'
+import { Input, Modal, Form } from 'antd'
 
 function ResourceModal(props){
 
-    const [form] = Form.useForm()
-
-    const { visible } = props;
-
-    const handleAddResource = (data) => {
-        addResource(data).then(response => {
-            console.log("添加资源", response)
-        })
-    }
-
-    const handleUpdateResource = (data) => {
-        updateResource(data).then(response => {
-            console.log("更新资源", response)
-        })
-    }
-
-    const handleOk = () => {
-        form.validateFields().then(values => {
-            console.log("填写信息", values)
-            values.namespace = "demo"
-            handleAddResource(values)
-        }, err => {
-            console.log("err values", err)
-        })
-    }
-
-    const handleCancel = () => {
-
-    }
+    const { visible, form, handleOk, handleCancel } = props;
 
     const layout = {
         labelCol: { span: 6 },
@@ -48,7 +19,7 @@ function ResourceModal(props){
         >
           <Form
             {...layout}
-            name="basic"
+            name="resource"
             form={form}
             >
                 <Form.Item

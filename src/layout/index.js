@@ -45,6 +45,7 @@ function LayoutComponent(props) {
   // 路由权限生成
   const generateRoute = (permissions) => {
     let result = []
+    console.log("permissions", permissions)
     routes.forEach(item => {
       let itemRoute = item
       if(item.children){
@@ -54,6 +55,7 @@ function LayoutComponent(props) {
         result.push(itemRoute)    
       }
     });
+    console.log("生成的路由result", result)
     setNewRoutes(result.concat(publicRoutes))
   }
 
