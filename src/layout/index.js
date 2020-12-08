@@ -78,7 +78,7 @@ function LayoutComponent(props) {
           }}
         >
           <div className="logo" />
-          <MenuComponent routes={newRoutes} />
+          <MenuComponent routes={routes} />
         </Sider>
       </Router>
       <Layout className="site-layout">
@@ -95,7 +95,7 @@ function LayoutComponent(props) {
           )}
           <HeaderInfo />
         </Header>
-        {newRoutes.length>0?<ContentComponent routes={newRoutes} />:null}
+        {newRoutes.length>0?<ContentComponent routes={routes} />:null}
       </Layout>
     </Layout>
   );

@@ -1,9 +1,18 @@
 import React, { Fragment, useState } from "react";
 import { Row, Col, Card, Tabs } from 'antd'
+//import Tour from 'reactour'
 import './dashboard.css'
 import PieDemo from './components/pie'
 import BarDemo from './components/bar'
 const { TabPane } = Tabs
+
+const steps = [{
+	selector: '.first-step',
+	content: 'this is my first step'
+},{
+	selector: '.second-step',
+	content: 'this is my first step'
+}]
 
 // 展示内容
 // 时间维度：展示7天内的数据
@@ -13,6 +22,7 @@ const { TabPane } = Tabs
 function DashBoard1(props) {
 
 	const [tab, setTab] = useState("tab1")
+	//const [isTourOpen, setIsTourOpen] = useState(true)
 
 	const tabList = [
 		{
@@ -57,9 +67,11 @@ function DashBoard1(props) {
 			<Col span={8}>
 				<Card title="地域分布" className="CardSmall" extra={<a href="#">More</a>}>
 					<PieDemo />
+					
 				</Card>
 			</Col>
 		</Row>
+		{/*<Tour steps={steps} isOpen={isTourOpen} onRequestClose={()=>setIsTourOpen(false)} />*/}
     </Fragment>;
 }
 
